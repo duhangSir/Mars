@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>薪酬管理</div>
 </template>
 <script setup></script>
 <style scoped lang="scss"></style>

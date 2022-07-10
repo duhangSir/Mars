@@ -34,9 +34,7 @@ body {
   background-color: #ffffff;
   color: #666666;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  padding: 0 10px;
-  text-align: left;
+  font-size: 20px;
 }
 select {
   font-size: 12px;

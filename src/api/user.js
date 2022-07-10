@@ -1,5 +1,8 @@
 import request from '../untils/request'
 const login = (data) => {
-  request({ url: '/users/login', method: 'GET', data })
+  return request({ url: '/users/login', method: 'POST', data })
 }
-export default { login }
+const getproList = () => {
+  return request({ url: '/users/getPermissionList', method: 'GET' })
+}
+export default { login, getproList }

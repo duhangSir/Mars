@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 const instance = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
@@ -6,6 +7,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
+    const token = store.getters.token.token
+    if (token) {
+      config.headers.Authorization = 'Bearer ' + token
+    }
     return config
   },
   (error) => {
@@ -13,8 +18,11 @@ instance.interceptors.request.use(
   }
 )
 instance.interceptors.response.use(
-  (config) => {
-    return config
+  (response) => {
+    if (response.data.code === 200) {
+      return response.data.data
+    }
+    return response
   },
   (error) => {
     return Promise.reject(error)
@@ -25,7 +33,7 @@ const request = (options) => {
   if (options.method.toLowerCase() === 'get') {
     options.params = options.data
   }
-  instance(options)
+  return instance(options)
 }
 
 export default request
